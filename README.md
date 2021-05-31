@@ -6,48 +6,16 @@ We are using the [NVidia Jetson Xavier NX Developer Kit](https://developer.nvidi
 
 We can create an SD card image and just reuse that (basically a clone of the entire system)
 
-- [official documentation](https://docs.nvidia.com/jetson/l4t/index.html)
+**Resources:**
+
+- [NVidia official documentation](https://docs.nvidia.com/jetson/l4t/index.html)
 - [Medium article: The Newbie Guide to Setting Up a Jetson Nano on JP4.4 Part 1: Running Jupyter Lab Headless Using SSH](https://medium.com/swlh/the-newbie-guide-to-setting-up-a-jetson-nano-on-jp4-4-230449346258)
 
-## Flashing the Jetson
+## [Flashing the Jetson](flash_jetson/flash_jeston_instructions.md)
 
-You must flash it using the SDK manager Jetpack 4.4.1 (for compatibility with the camera)
+You must flash it using the SDK manager Jetpack 4.4.1 (for compatibility with the camera).
 
-### Communicating using USB cable
-
-To connect it using the USB on Linux, use
-
-```bash
-sudo minicom -D /dev/ttyACM0 -8 -b 115200
-```
-
-### Backing up SD card
-
- (replace `/dev/sdX` with proper device, use `sudo fdisk -l` to check)
-
-```bash
-# write image from SD card to file
-sudo dd bs=32M if=/dev/sdX of="jetson_backup_$(date).img" status=progress
-
-# write image from file to SD card
-sudo dd bs=32M if="<jetson_backup>.img" of=/dev/sdX status=progress
-```
-
-### Adding swap
-
-```bash
-# adding swap space
-gbswp=20
-sudo fallocate -l ${gbswp}G /mnt/${gbswp}GB.swap
-sudo chmod 600 /mnt/${gbswp}GB.swap
-sudo mkswap /mnt/${gbswp}GB.swap
-echo "/mnt/${gbswp}GB.swap swap swap defaults 0 0" | sudo tee -a /etc/fstab
-sudo swapon /mnt/${gbswp}GB.swap
-
-## set swapiness
-#sudo sh -c 'echo 1 > /proc/sys/vm/swappiness'
-
-```
+[See instructions](flash_jetson/flash_jeston_instructions.md).
 
 ## Installing packages
 
@@ -204,9 +172,47 @@ cam = cv2.VideoCapture(spec, cv2.CAP_GSTREAMER)
 
 ## [extras](extras.md)
 
+### Communicating using USB cable
+
+To connect it using the USB on Linux, use
+
+```bash
+sudo minicom -D /dev/ttyACM0 -8 -b 115200
+```
+
+### Backing up SD card
+
+ (replace `/dev/sdX` with proper device, use `sudo fdisk -l` to check)
+
+```bash
+# write image from SD card to file
+sudo dd bs=32M if=/dev/sdX of="jetson_backup_$(date).img" status=progress
+
+# write image from file to SD card
+sudo dd bs=32M if="<jetson_backup>.img" of=/dev/sdX status=progress
+```
+
+### Adding swap
+
+```bash
+# adding swap space
+gbswp=20
+sudo fallocate -l ${gbswp}G /mnt/${gbswp}GB.swap
+sudo chmod 600 /mnt/${gbswp}GB.swap
+sudo mkswap /mnt/${gbswp}GB.swap
+echo "/mnt/${gbswp}GB.swap swap swap defaults 0 0" | sudo tee -a /etc/fstab
+sudo swapon /mnt/${gbswp}GB.swap
+
+## set swapiness
+#sudo sh -c 'echo 1 > /proc/sys/vm/swappiness'
+
+```
+
 ---
 
 ## TODO
 
 - [ ] add a `Resources` section
-- [ ] add jetson flash instructions
+- [ ] add section on remote access
+- [x] add jetson flash instructions
+- [ ] add opencv threaded camera fetching
