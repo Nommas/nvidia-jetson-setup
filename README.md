@@ -8,7 +8,9 @@ We can create an SD card image and just reuse that (basically a clone of the ent
 
 **Resources:**
 
-- [NVidia official documentation](https://docs.nvidia.com/jetson/l4t/index.html)
+- NVidia official documentation
+   - [support resources (find anything official here)](https://developer.nvidia.com/embedded/community/support-resources)
+   - [Linux developer guide](https://docs.nvidia.com/jetson/l4t/index.html)
 - [NVIDIA Jetson Xavier NX flashing tutorial
 ](https://www.programmersought.com/article/28344912501/)
 - [Medium article: The Newbie Guide to Setting Up a Jetson Nano on JP4.4 Part 1: Running Jupyter Lab Headless Using SSH](https://medium.com/swlh/the-newbie-guide-to-setting-up-a-jetson-nano-on-jp4-4-230449346258)
