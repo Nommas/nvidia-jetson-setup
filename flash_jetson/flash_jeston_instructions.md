@@ -8,7 +8,7 @@ Here are some [official instructions](https://docs.nvidia.com/sdk-manager/instal
 
 2. After installing SDK open SDK Manager from Search
 
-3. Login as a developer.
+3. Login as a
 
 4. On `Target Hardware`, select the device you want to flash.
 
