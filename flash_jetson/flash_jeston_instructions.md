@@ -28,7 +28,7 @@ Here are some [official instructions](https://docs.nvidia.com/sdk-manager/instal
    For carrier board revision A02, these are pins 3 and 4 of J40, which is located near the camera header.
 
    1. To do this, power off the jetson and disconnect power
-   2. connect the jumper pins to Force Recovery Mode
+   2. Connect the FC REC to GND by female to female jumber wire. 
         ![](images/jetson_force_recovery_mode.jpg)
 
     ![image 5](images/5.png)
