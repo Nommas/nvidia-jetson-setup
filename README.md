@@ -189,12 +189,24 @@ sudo minicom -D /dev/ttyACM0 -8 -b 115200
  (replace `/dev/sdX` with proper device, use `sudo fdisk -l` to check)
 
 ```bash
+## with compression (takes less space)
+# write image from SD card to file
+sudo dd if=/dev/sdX conv=sync,noerror bs=64K | gzip -c > ~/backup_image.img.gz
+
+# restore image from file to SD card
+sudo gunzip -c ~/backup_image.img.gz | dd of=/dev/sdX bs=64K
+
+
+## without compression:
 # write image from SD card to file
 sudo dd bs=32M if=/dev/sdX of="jetson_backup_$(date).img" status=progress
 
 # write image from file to SD card
-sudo dd bs=32M if="<jetson_backup>.img" of=/dev/sdX status=progress
+sudo dd bs=32M if=<jetson_backup>.img of=/dev/sdX status=progress
+
 ```
+
+NOTE: this method should be revised as there are security issues mentioned in [this thread](https://forums.developer.nvidia.com/t/jetson-nano-cloning-and-deployment-of-the-image-to-other-devices/74904/3). Also possibly we should be using `flash.sh` as mentioned [here](https://docs.nvidia.com/jetson/l4t/index.html#page/Tegra%20Linux%20Driver%20Package%20Development%20Guide/flashing.html).
 
 ### Adding swap
 
