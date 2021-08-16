@@ -176,13 +176,24 @@ cam = cv2.VideoCapture(spec, cv2.CAP_GSTREAMER)
 
 ## [extras](extras.md)
 
-### Communicating using USB cable
+### SSH over USB
 
-To connect it using the USB on Linux, use
+Communicating using USB cable
+
+Try accessing the Jetson's USB IP which should be fixed (different boards have different USB IP addresses)
+
+`-l en1` is the username of the Jetson
+
+```bash
+sudo ssh 192.168.55.1 -l en1
+```
+
+Another way is using `minicom`, `sudo apt install minicom`, to connect it using the USB on Linux, use:
 
 ```bash
 sudo minicom -D /dev/ttyACM0 -8 -b 115200
 ```
+
 
 ### Backing up SD card
 
