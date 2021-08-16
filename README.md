@@ -182,10 +182,8 @@ Communicating using USB cable
 
 Try accessing the Jetson's USB IP which should be fixed (different boards have different USB IP addresses)
 
-`-l en1` is the username of the Jetson
-
 ```bash
-sudo ssh 192.168.55.1 -l en1
+sudo ssh 192.168.55.1 -l JETSONUSERNAMEHERE
 ```
 
 Another way is using `minicom`, `sudo apt install minicom`, to connect it using the USB on Linux, use:
